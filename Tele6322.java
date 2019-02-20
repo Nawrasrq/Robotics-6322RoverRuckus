@@ -36,7 +36,7 @@ public class Tele6322 extends RoverRuckusLinearOpMode6322{
         while(opModeIsActive()){
 
             float Ly = -gamepad1.left_stick_y;
-            float Lx = -gamepad1.left_stick_x;
+            float Lx = gamepad1.left_stick_x;
             float Rx = gamepad1.right_stick_x;
 
             /*frontLeft.setPower((Ly-Lx) + (-Rx * .5));
@@ -44,12 +44,11 @@ public class Tele6322 extends RoverRuckusLinearOpMode6322{
             backLeft.setPower(Ly+Lx + (-Rx * .5));
             backRight.setPower(Ly-Lx + (Rx * .5));*/
             
-            frontLeft.setPower((-Rx*.5) + (Ly+Lx));
-            frontRight.setPower((Rx*.5) + (Ly-Lx));
-            backLeft.setPower((-Rx*.5) + (Ly+Lx));
-            backRight.setPower((Rx*.5) + (Ly-Lx));
-
-        /*  mecnum
+            frontLeft.setPower((Rx*.5) + (Ly+Lx));
+            frontRight.setPower((-Rx*.5) + (Ly-Lx));
+            backLeft.setPower((Rx*.5)+ (Ly-Lx));
+            backRight.setPower((-Rx*.5)+(Ly+Lx));
+    /*  mecnum
             frontLeft.setPower(Ly+Lx+Rx);
             frontRight.setPower(Ly-Lx-Rx);
             backLeft.setPower(Ly-Lx+Rx);
@@ -124,7 +123,7 @@ public class Tele6322 extends RoverRuckusLinearOpMode6322{
                 arm1.setPower(.8);
             }
             else {
-                arm1.setPower(0);
+                arm1.setPower(-0.12);
             }
 
             /*else{
