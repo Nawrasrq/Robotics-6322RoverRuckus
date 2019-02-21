@@ -48,12 +48,6 @@ public class Tele6322 extends RoverRuckusLinearOpMode6322{
             frontRight.setPower((-Rx*.5) + (Ly-Lx));
             backLeft.setPower((Rx*.5)+ (Ly-Lx));
             backRight.setPower((-Rx*.5)+(Ly+Lx));
-    /*  mecnum
-            frontLeft.setPower(Ly+Lx+Rx);
-            frontRight.setPower(Ly-Lx-Rx);
-            backLeft.setPower(Ly-Lx+Rx);
-            backRight.setPower(Ly+Lx-Rx);
-          */
 
             telemetry.addData("Arm Enc Counts: ", arm1.getCurrentPosition());
             telemetry.update();
@@ -113,7 +107,8 @@ public class Tele6322 extends RoverRuckusLinearOpMode6322{
             else{
                 linearSlide.setPower(0);
             }
-
+//Arm threshold would work like- if(!gamepad1.left_trigger && lastEncoderticks < .getEncoderticks) move back, flip the equality sign
+                                                                                                // to move forward to counter gravity 
 
             //move arm forwards and backwards
             if(gamepad1.y){
