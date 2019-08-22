@@ -73,11 +73,6 @@ public abstract class RoverRuckusLinearOpMode6322 extends LinearOpMode{
         linearSlide = hardwareMap.dcMotor.get("ls");
 
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
-        //arm1.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        //push1 = hardwareMap.servo.get("s");
-
-        //push1.setPosition(0.40);
 
         //PID/IMU
 
@@ -90,7 +85,6 @@ public abstract class RoverRuckusLinearOpMode6322 extends LinearOpMode{
 
         Imu = hardwareMap.get(BNO055IMU.class, "imu");
         Imu.initialize(parameters);
-
     }
 
     //Working Forward/Backward method using encoders and motorPower
@@ -133,6 +127,7 @@ public abstract class RoverRuckusLinearOpMode6322 extends LinearOpMode{
             frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
+    
     //Working Strafe method using encoders and motorPower
     //multiply target position inches by 2 to not lose power when strafing
     public void Strafe(double inches, double power){
@@ -174,6 +169,7 @@ public abstract class RoverRuckusLinearOpMode6322 extends LinearOpMode{
             frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
+    
     //Turn method not using GyroSensor.
     public void turnWithoutGyro(double inches, double power){
         if(opModeIsActive())  {
@@ -244,13 +240,11 @@ public abstract class RoverRuckusLinearOpMode6322 extends LinearOpMode{
         backRight.setPower(0.0);
     }
 
-    private double checkDirection()
-    {
+    private double checkDirection(){
         // The gain value determines how sensitive the correction is to direction changes.
         // You will have to experiment with your robot to get small smooth direction changes
         // to stay on a straight line.
         double correction, angle, gain = .10;
-
         angle = getAngle();
 
         if (angle == 0)
@@ -259,7 +253,6 @@ public abstract class RoverRuckusLinearOpMode6322 extends LinearOpMode{
             correction = -angle;        // reverse sign of angle for correction.
 
         correction = correction * gain;
-
         return correction;
     }
 
@@ -339,6 +332,7 @@ public abstract class RoverRuckusLinearOpMode6322 extends LinearOpMode{
         lastAngles = Imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         globalAngle = 0;
     }
+    
     public double getAngle()
     {
         // We experimentally determined the Z axis is the axis we want to use for heading angle.
@@ -356,9 +350,7 @@ public abstract class RoverRuckusLinearOpMode6322 extends LinearOpMode{
             deltaAngle -= 360;
 
         globalAngle += deltaAngle;
-
         lastAngles = angles;
-
         return globalAngle;
     }
     public void getPID(double sensorValue, double desiredValue){
